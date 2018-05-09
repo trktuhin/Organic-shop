@@ -1,0 +1,24 @@
+
+<div class="row">
+  <div class="col-3">
+    <product-filter [category]="category">
+    </product-filter>
+  </div>
+  <div class="col">
+      <div class="row" *ngIf="cart$ | async as cart">
+        <div class="text-danger" *ngIf="filteredProducts && filteredProducts.length<1">
+          <h3>There is no products in this category</h3>
+        </div>
+          <ng-container *ngFor="let p of filteredProducts;let i=index">
+            <div class="col">
+                <product-cart
+                [product]="p"
+                [shopping-cart]="cart"
+                ></product-cart>
+            </div>
+            <div *ngIf="(i+1)%2===0" class="w-100"></div>
+          </ng-container>
+        </div>
+  </div>
+</div>
+

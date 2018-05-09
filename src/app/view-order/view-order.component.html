@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-6 offset-2" *ngIf="order">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Date placed
+      <div class="float-right">{{order.datePlaced|date}}</div>
+      </li>
+      <li class="list-group-item">User Id
+          <div class="float-right">{{order.userId}}</div>
+          </li>
+      <li class="list-group-item">Ordered by
+          <div class="float-right">{{order.shipping.name}}</div>
+      </li>
+      <li class="list-group-item">City
+          <div class="float-right">{{order.shipping.city}}</div>
+      </li>      
+      <li 
+      *ngFor="let item of order.items"
+      class="list-group-item">
+      {{item.quantity}} x {{item.product.title}}
+      <div class="float-right"> {{item.totalPrice|currency}}</div>
+    </li>
+    <li class="list-group-item font-weight-bold">
+      Total
+      <div class="float-right">{{getTotalPrice()|currency}}</div>
+    </li>
+    </ul>
+  </div>
+</div>
